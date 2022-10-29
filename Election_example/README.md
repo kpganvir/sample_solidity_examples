@@ -1,6 +1,34 @@
-**sample_solidity_examples** <br/>
-1)**ERC20_demo.sol**:implementation of ERC20 token.<br/>
-2)**HotelroomBook_payable.sol**:implementation of payable function and payable address ,<br/>
-3)**assignment1.sol**: implementation of function modifiers and basic funtionality <br/>
-4)**lottery.sol**: demo project of lottery  <br/>
+## Voting project 
+**Election.sol**:smart contract for voting.<br/>
 
+## Technology Stack & Tools
+--VScode
+--Node
+--NPM
+--truffle
+--ganache
+--javascript
+--solidity
+
+## Requirements For Initial Setup
+--install truffle
+  ```
+  npm install -g truffle
+  ```
+--create truffle project
+```
+ truffle unbox pet-shop
+```
+
+
+##How to run
+
+--clone repository
+--open folder in VScode
+```
+$ cd Election_example
+$ Election_example>truffle migrate 
+
+```
+
+##How to Test
