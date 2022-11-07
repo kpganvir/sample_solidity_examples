@@ -10,7 +10,10 @@ contract election{
         uint votes;
       }
     //store candidate 
-        mapping(address=>Candidate) candidatesList;
+        mapping(address=>Candidate) public candidatesList;
+        uint public candidatesCount;
+
+
     address owner;
     //read condidate
      //construction to initialize variables
@@ -25,9 +28,10 @@ contract election{
     //event
     event log(address add,string txt);
 
-    function addCanditate(address _addr,string memory _name) public  onlyOwner
+    function addCandidate(address _addr,string memory _name) public  onlyOwner
     {
         //set candidate with initial votes=0
+       candidatesCount++;
        candidatesList[_addr]=Candidate(_name,true,0);
        emit log(_addr,"candidate added !!");
     }
