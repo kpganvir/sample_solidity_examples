@@ -15,3 +15,7 @@ UI shows latest rates on button click event.
 - [Alchemy](https://docs.alchemy.com/docs/interacting-with-a-smart-contract) (Node)
 
 
+##UI screenshots
+
+![screen1] https://github.com/kpganvir/sample_solidity_examples/tree/master/CurrencyRates_demo/capture1.png
+ ![screen1] (https://github.com/kpganvir/sample_solidity_examples/tree/master/CurrencyRates_demo/capture2.png,"Eth/USD")
