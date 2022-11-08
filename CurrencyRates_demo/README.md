@@ -17,5 +17,5 @@ UI shows latest rates on button click event.
 
 ##UI screenshots
 
-![screen1] https://github.com/kpganvir/sample_solidity_examples/blob/master/CurrencyRates_demo/Capture1.PNG
- ![screen1] (https://github.com/kpganvir/sample_solidity_examples/tree/master/CurrencyRates_demo/Capture2.png,"Eth/USD")
+ ![Capture1](https://user-images.githubusercontent.com/59539741/200634406-4253516c-b6a2-4785-9153-cd49f6a1d27b.PNG)
+
