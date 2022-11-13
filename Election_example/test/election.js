@@ -1,23 +1,41 @@
+const { expect, assert } = require("chai");
 
 var Election=artifacts.require("./election.sol");
 
-contract("Election" ,function(){
-    const eleInstance;
-    it("initializaiton of 2 candidates",async function (){
-         return Election.deployed()
-         .then( function(instance) {
-            eleInstance= instance.connect('0x4fe44b94Ac9c6cdb8acdD6CA00b968Dee3721b6E');
-            eleInstance.addCandidate('0x4B1B56ECb14436D493f36961eA686BF7ea7F8D09','modi');
-
-          //  instance.addCandidate('0xa861Bd0c985A67c11e1B86102e83BD731d0F77f2','kejriwal');
-            return instance.candidatesCount();
-         }).then(function(count){
-            assert.equal(count,1);
-         });
+contract("Election",function(accounts){
 
 
-         
-
-    });
+   it("it should have zero condidates after contract deployed", async function(){
+      return Election.deployed().then( function(instance){
+                     return instance.candidatesCount();
+      }).then(function(count){
+         assert.equal(count,0);
+      });
    
+   });
+   //    it("it should add condidate in list", async function(){
+   //       return Election.deployed()
+   //       .then( function(instance){
+   //             return instance.addCandidate.call('0xFc7Be89f08b9E69C7B53DfF016eF14bf89eb4ad2','c1');
+   //       })
+   //       .then(function(list){
+   //          assert.equal(list[0].name,'c1',"contains correct name");
+   //       });
+       
+
+   // });
+
+   it("it should add condidate in list", async () => 
+   {
+   return   Election.deployed()
+               .then(instance => {
+                  instance.addCandidate('0xFc7Be89f08b9E69C7B53DfF016eF14bf89eb4ad2','c1');
+                  return instance.candidatesCount();
+               })
+               .then(count =>{assert.equal(count,0);})
+  
+    
+   });
+
+
 });

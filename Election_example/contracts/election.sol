@@ -10,10 +10,10 @@ contract election{
         uint votes;
       }
     //store candidate 
-        mapping(address=>Candidate) public candidatesList;
+        mapping(uint=>Candidate) public candidatesList;
         uint public candidatesCount;
-
-
+     //store voters
+        mapping(address => bool) voters;
     address owner;
     //read condidate
      //construction to initialize variables
@@ -26,16 +26,26 @@ contract election{
         _;
     }
     //event
-    event log(address add,string txt);
-
+    event candidateAddedEvent(address add,string txt);
+    event votedEvent(uint  indexed _candidateId);
     function addCandidate(address _addr,string memory _name) public  onlyOwner
     {
         //set candidate with initial votes=0
        candidatesCount++;
-       candidatesList[_addr]=Candidate(_name,true,0);
-       emit log(_addr,"candidate added !!");
+       candidatesList[candidatesCount]=Candidate(_name,true,0);
+       emit candidateAddedEvent(_addr,"candidate added !!");
     }
 
+  // function vote(uint _candidateId) public {
+  //   //voters have not been previously voted
+  //   require(!voters[msg.sender]);
+     
+  //   require(_candidateId >0 && _candidateId <=candidatesCount);
 
+  //   voters[msg.sender]=true;
+  //   candidatesList[candidatesCount].votes ++;
+
+  //   votedEvent(_candidateId);
+  // }
 
 }
