@@ -28,12 +28,13 @@ contract election{
     //event
     event candidateAddedEvent(address add,string txt);
     event votedEvent(uint  indexed _candidateId);
-    function addCandidate(address _addr,string memory _name) public  onlyOwner
+    function addCandidate(string memory _name) public returns (bool)
     {
         //set candidate with initial votes=0
        candidatesCount++;
        candidatesList[candidatesCount]=Candidate(_name,true,0);
-       emit candidateAddedEvent(_addr,"candidate added !!");
+       return true;
+    //   emit candidateAddedEvent("candidate added !!");
     }
 
   // function vote(uint _candidateId) public {

@@ -25,14 +25,20 @@ contract("Election",function(accounts){
 
    // });
 
-   it("it should add condidate in list", async () => 
+   
+   it("candidate count should increament", async () => 
    {
    return   Election.deployed()
-               .then(instance => {
-                  instance.addCandidate('0xFc7Be89f08b9E69C7B53DfF016eF14bf89eb4ad2','c1');
-                  return instance.candidatesCount();
+                .then(instance =>{
+                   instance.addCandidate('c1');
+                  // instance.addCandidate('c12');
+                   return instance.candidatesCount();
+                  }
+                )
+                       .then(result =>{
+                
+                 assert.equal(result,1);
                })
-               .then(count =>{assert.equal(count,0);})
   
     
    });
