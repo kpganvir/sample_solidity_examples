@@ -5,12 +5,12 @@ contract election{
 
     //candidate
       struct Candidate{
+        uint id;
         string name;
-        bool isValid;
-        uint votes;
+        uint voteCount;
       }
     //store candidate 
-        mapping(uint=>Candidate) public candidatesList;
+        mapping(uint=>Candidate) public candidates;
         uint public candidatesCount;
      //store voters
         mapping(address => bool) voters;
@@ -18,7 +18,8 @@ contract election{
     //read condidate
      //construction to initialize variables
     constructor()public {
-     owner=msg.sender;
+        addCandidate("Candidate 1");
+        addCandidate("Candidate 2");
     }
     //modifier 
     modifier onlyOwner(){
@@ -28,25 +29,30 @@ contract election{
     //event
     event candidateAddedEvent(address add,string txt);
     event votedEvent(uint  indexed _candidateId);
-    function addCandidate(string memory _name) public returns (bool)
+    function addCandidate(string memory _name) private returns (bool)
     {
         //set candidate with initial votes=0
        candidatesCount++;
-       candidatesList[candidatesCount]=Candidate(_name,true,0);
+       candidates[candidatesCount]=Candidate(candidatesCount,_name,0);
        return true;
     //   emit candidateAddedEvent("candidate added !!");
     }
 
-  // function vote(uint _candidateId) public {
-  //   //voters have not been previously voted
-  //   require(!voters[msg.sender]);
-     
-  //   require(_candidateId >0 && _candidateId <=candidatesCount);
+ function vote (uint _candidateId) public {
+        // require that they haven't voted before
+        require(!voters[msg.sender]);
 
-  //   voters[msg.sender]=true;
-  //   candidatesList[candidatesCount].votes ++;
+        // require a valid candidate
+        require(_candidateId > 0 && _candidateId <= candidatesCount);
 
-  //   votedEvent(_candidateId);
-  // }
+        // record that voter has voted
+        voters[msg.sender] = true;
+
+        // update candidate vote Count
+        candidates[_candidateId].voteCount ++;
+
+        // trigger voted event
+        emit votedEvent(_candidateId);
+    }
 
 }
