@@ -13,7 +13,7 @@ contract election{
         mapping(uint=>Candidate) public candidates;
         uint public candidatesCount;
      //store voters
-        mapping(address => bool) voters;
+        mapping(address => bool) public voters;
     address owner;
     //read condidate
      //construction to initialize variables

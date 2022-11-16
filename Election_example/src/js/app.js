@@ -12,18 +12,18 @@ App = {
     // TODO: refactor conditional
     if (typeof web3 !== 'undefined') {
       // If a web3 instance is already provided by Meta Mask.
-      App.web3Provider = web3.currentProvider;
+      App.web3Provider = window.ethereum;
       web3 = new Web3(web3.currentProvider);
     } else {
       // Specify default instance if no web3 instance provided
-      App.web3Provider = new Web3.providers.HttpProvider('http://localhost:7545');
+      App.web3Provider = new Web3.providers.HttpProvider('http://127.0.0.1:7545');
       web3 = new Web3(App.web3Provider);
     }
     return App.initContract();
   },
 
   initContract: function() {
-    $.getJSON("Election.json", function(election) {
+    $.getJSON("./election.json", function(election) {
       // Instantiate a new truffle contract from the artifact
       App.contracts.Election = TruffleContract(election);
       // Connect provider to interact with contract
@@ -33,7 +33,7 @@ App = {
 
       return App.render();
     });
-  },
+  }, 
 
   // Listen for events emitted from the contract
   listenForEvents: function() {
@@ -67,7 +67,12 @@ App = {
         $("#accountAddress").html("Your Account: " + account);
       }
     });
-
+     if(ethereum){
+      ethereum.enable().then(function(acc){
+        App.account = acc[0];
+        $("#accountAddress").html("Your Account: " + App.account);
+    });
+     }
     // Load contract data
     App.contracts.Election.deployed().then(function(instance) {
       electionInstance = instance;
