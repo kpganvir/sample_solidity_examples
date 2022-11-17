@@ -24,11 +24,30 @@
 ##How to run
 
 --clone repository
---open folder in VScode
 ```
 $ cd Election_example
-$ Election_example>truffle migrate 
+```
+
+--open folder in VScode
+--compile contract 
+```
+$ Election_example>truffle compile 
+
+```
+--test contract 
+```
+$ Election_example>truffle test
 
 ```
 
-##How to Test
+--migrate/deploy contract 
+```
+$ Election_example>truffle migrate --reset
+
+```
+
+--run UI application 
+```
+$ Election_example>npm run dev
+
+```
